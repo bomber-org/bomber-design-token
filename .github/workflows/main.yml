@@ -1,0 +1,37 @@
+name: Generate Colors
+
+on:
+ push:
+    branches:
+      - main # Adjust the branch name as needed
+
+permissions:
+  contents: write
+
+jobs:
+ generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            variables:
+              - 'core/variables.json'
+
+      - name: Run commands if core/variables.json changed
+        if: steps.changes.outputs.variables == 'true'
+        run: |
+          yarn
+          npx tsx core/generateColors.ts
+          git config --global user.name "widyalin"
+          git config --global user.email "widya@bomber.app"
+          git add .
+          git commit -m 'generate'
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
