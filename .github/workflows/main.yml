@@ -28,6 +28,7 @@ jobs:
         run: |
           yarn
           npx tsx core/generateColors.ts
+          yarn run tsc
           git config --global user.name "widyalin"
           git config --global user.email "widya@bomber.app"
           git add .
