@@ -9,7 +9,7 @@
           "name": "General",
           "variables": [
             {
-              "name": "Semantic/Button/button-primary-bg-1",
+              "name": "Semantic/Button/button-primary-bg",
               "type": "color",
               "isAlias": true,
               "value": {
