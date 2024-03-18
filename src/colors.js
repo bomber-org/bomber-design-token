@@ -166,7 +166,7 @@ const ThemeBaseColors = {
 };
 const Colors = {
     General: {
-        Semantic_Button_button_primary_bg: ThemeBaseColors.General.Basic_Primary_primary_500,
+        Semantic_Button_button_primary_bg_1: ThemeBaseColors.General.Basic_Primary_primary_500,
         Semantic_Button_button_secondary_bg: ThemeBaseColors.General.Basic_Secondary_secondary_500,
         Semantic_Button_button_success_bg: ThemeBaseColors.General.Basic_Success_success_500,
         Semantic_Button_button_warning_bg: ThemeBaseColors.General.Basic_Warning_warning_500,
@@ -256,7 +256,7 @@ const Colors = {
         Semantic_Other_switch_checked_fill: ThemeBaseColors.General.Basic_Primary_primary_500,
     },
     Neon_Style: {
-        Semantic_Button_button_primary_bg: ThemeBaseColors.Neon_Style.Basic_Primary_primary_500,
+        Semantic_Button_button_primary_bg_1: ThemeBaseColors.Neon_Style.Basic_Primary_primary_500,
         Semantic_Button_button_secondary_bg: ThemeBaseColors.Neon_Style.Basic_Secondary_secondary_500,
         Semantic_Button_button_success_bg: ThemeBaseColors.Neon_Style.Basic_Success_success_500,
         Semantic_Button_button_warning_bg: ThemeBaseColors.Neon_Style.Basic_Warning_warning_500,
