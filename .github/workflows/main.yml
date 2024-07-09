@@ -22,8 +22,10 @@ jobs:
           filters: |
             variables:
               - 'core/variables.json'
+            generateColors:
+              - 'core/generateColors.ts'
 
-      - name: Run commands if core/variables.json changed
+      - name: Run commands if core/variables.json or core/generateColors.ts changed
         if: steps.changes.outputs.variables == 'true'
         run: |
           yarn
