@@ -26,7 +26,7 @@ jobs:
               - 'core/generateColors.ts'
 
       - name: Run commands if core/variables.json or core/generateColors.ts changed
-        if: steps.changes.outputs.variables == 'true'
+        if: steps.changes.outputs.variables == 'true' || steps.changes.outputs.generateColors == 'true'
         run: |
           yarn
           npx tsx core/generateColors.ts
