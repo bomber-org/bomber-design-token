@@ -24,8 +24,8 @@ const exportTypeColors = `export type ColorsType = {
 `;
 
 let themeType = 'export type Theme = ';
-let baseColorsType = 'type BaseColors = \n';
-let colorKeysType = 'type ColorKeys = \n';
+let baseColorsType = 'type BaseColors = \n  ';
+let colorKeysType = 'type ColorKeys = \n  BaseColors\n  | ';
 
 const themes = new Set();
 const baseColors = new Set();
@@ -57,6 +57,7 @@ themeData.forEach((theme: { name: string, variables: [_color] }) => {
     }
   });
   themeBaseColorsConst += '  },\n';
+  colorsConst += `    ...ThemeBaseColors.${mode},\n`;
   colorsConst += '  },\n';
 });
 
@@ -70,11 +71,11 @@ themeType +=
 baseColorsType +=
   Array.from(baseColors)
     .map(color => `'${color}'`)
-    .join(' | ') + ';\n\n';
+    .join('\n  | ') + ';\n\n';
 colorKeysType +=
   Array.from(colorKeys)
     .map(colorKey => `'${colorKey}'`)
-    .join(' | ') + ';\n\n';
+    .join('\n  | ') + ';\n\n';
 
 const tsOutput =
   themeBaseColorsType +
