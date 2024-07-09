@@ -16,7 +16,7 @@ const themeColorsType = `type ThemeColors = {
    [K in Theme]: {[X in ColorKeys]: string};
  };\n\n`;
 
-const exportColorConst = 'export default Colors;\n\n';
+const exportColorConst = 'export default Colors;\n\n'; 
 
 const exportTypeColors = `export type ColorsType = {
   [key in ColorKeys]: string;
