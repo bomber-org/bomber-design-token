@@ -34,7 +34,7 @@ let colorKeys = new Set();
 let themeBaseColorsConst = 'const ThemeBaseColors: ThemeBaseColors = {\n';
 let colorsConst = 'const Colors: ThemeColors = {\n';
 
-type _color = { value: { name: string }, name: string, isAlias: boolean }
+type _color = { value: { name: string }, name: string, isAlias: boolean };
 
 const getKeyAndColorValue = (parentKey: string, obj: Record<string, any>) : Record<string, string> => {
     let result = {}
@@ -54,9 +54,8 @@ const getKeyAndColorValue = (parentKey: string, obj: Record<string, any>) : Reco
         }
     }
   
-    return result
-    
-  }
+    return result;
+};
 
 const themeData = Object.entries<Record<string, any>>(jsonData.Colors);
 themeData.forEach(([key, value]) => {
