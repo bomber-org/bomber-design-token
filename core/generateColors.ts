@@ -6,7 +6,7 @@ const rawData = fs.readFileSync('core/variables.json');
 
 const jsonData = JSON.parse(rawData);
 // Helper function to sanitize color names
-const sanitizeName = (name: string) => name.replace(/[{}]|Colors./g, '').replace(/[^a-zA-Z0-9#]/g, '_');
+const sanitizeName = (name: string) => name.replace(/[{}]/g, '').replace(/[^a-zA-Z0-9#]/g, '_');
 
 const themeBaseColorsType = `type ThemeBaseColors = {
    [K in Theme]: {[X in BaseColors]: string};
@@ -36,7 +36,7 @@ let colorsConst = 'const Colors: ThemeColors = {\n';
 
 type _color = { value: { name: string }, name: string, isAlias: boolean }
 
-const getKeyAndColorValue = (parentKey: string, obj: Record<string, any>) : Record<string, string> => {
+const getKeyAndColorValue = (parentKey: string, obj: Record<string, any>) : Record<string, string | any> => {
     let result = {}
     let arr = Object.entries(obj); 
   
@@ -74,8 +74,14 @@ themeData.forEach(([key, value]) => {
       baseColors = new Set([...baseColors, ...colorsMapKeys])
       themeBaseColorsConst += (`${JSON.stringify(colorsMap)}`.replace(/[{}}]/g, '').replace(/[\,]/g, ',\n    ').replace(/"/g, '\'').replace(/\:/g, '\: '))
     } else {
-      colorKeys = new Set([...baseColors, ...colorsMapKeys])
-      colorsConst += (`${JSON.stringify(colorsMap)}`.replace(/[{}}]/g, '').replace(/[\,]/g, ',\n    ').replace(/"/g, '\'').replace(/\:/g, '\: '))
+      colorKeys = new Set([...colorsMapKeys])
+      colorsConst += (`${JSON.stringify(colorsMap)}`
+      .replace(/\"/g, '\'')
+      .replace(/Colors_/g, `ThemeBaseColors.${mode}.`)
+      .replace(/(:\s*)'([^']*ThemeBaseColors[^']*)'/g, (_, p1, p2) => `${p1}${p2}`))
+      .replace(/[{}}]/g, '')
+      .replace(/[\,]/g, ',\n    ')
+      .replace(/\:/g, '\: ')
     }
   })
 
